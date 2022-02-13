@@ -19,7 +19,7 @@ describe('Index', () => {
     const mockedGetData: User[] = [{ name: 'a', email: 'b' }]
     mockedAxios.get.mockResolvedValueOnce({ data: mockedGetData })
 
-    await accessor.getFacts()
+    await accessor.fetchUsers()
 
     expect(accessor.users).toEqual(mockedGetData)
   })

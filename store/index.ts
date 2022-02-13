@@ -26,7 +26,7 @@ export const mutations = mutationTree(state, {
 export const actions = actionTree(
   { state, getters, mutations },
   {
-    async getFacts({ commit }) {
+    async fetchUsers({ commit }) {
       const { data } = await axios.get(
         'https://jsonplaceholder.typicode.com/users'
       )
