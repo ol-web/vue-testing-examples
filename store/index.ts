@@ -1,17 +1,40 @@
 import { getAccessorType, mutationTree, actionTree } from 'typed-vuex'
-
+import axios from 'axios'
 // Import all your submodules
 // import * as submodule from '~/store/submodule'
 
-export const state = () => ({})
+export interface User {
+  name: string
+  email: string
+}
+
+export const state = () => ({
+  name: 'Maurycy',
+  users: [] as User[]
+})
 
 export type RootState = ReturnType<typeof state>
 
 export const getters = {}
 
-export const mutations = mutationTree(state, {})
+export const mutations = mutationTree(state, {
+  setUsers(state, users: User[]) {
+    state.users = users
+  }
+})
 
-export const actions = actionTree({ state, getters, mutations }, {})
+export const actions = actionTree(
+  { state, getters, mutations },
+  {
+    async getFacts({ commit }) {
+      const { data } = await axios.get(
+        'https://jsonplaceholder.typicode.com/users'
+      )
+
+      commit('setUsers', data)
+    }
+  }
+)
 
 // https://typed-vuex.roe.dev/
 export const accessorType = getAccessorType({

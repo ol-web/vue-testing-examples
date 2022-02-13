@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-function removeHangingConjunctions(inputText: string) {
+export function removeHangingConjunctions(inputText: string) {
   if (!inputText) return ''
   const hardSpace = '&nbsp;'
   const softSpace = ' '
