@@ -1,13 +1,11 @@
-// eslint-disable-next-line
-import axios from 'axios'
 import { useAccessor } from 'typed-vuex'
-import { mocked } from 'ts-jest/utils'
+import axios from 'axios'
 
 import getVuexStore from '@/tests/helpers/getVuexStore'
 import { state, mutations, actions, User } from '@/store'
 
 jest.mock('axios')
-const mockedAxios = mocked(axios, true)
+const mockedAxios = jest.mocked(axios, true)
 
 describe('Index', () => {
   it('fetches users from api and sets them to store', async () => {
